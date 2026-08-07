@@ -19,19 +19,19 @@ export default function MarginTrend() {
     <div style={{ width: '100%', height: 280 }}>
       <ResponsiveContainer>
         <ComposedChart data={data} margin={{ top: 8, right: 8, left: -12, bottom: 0 }}>
-          <CartesianGrid stroke="#e1e0d9" vertical={false} />
-          <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} />
+          <CartesianGrid stroke="#2A2538" vertical={false} />
+          <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#8F99B2' }} axisLine={{ stroke: '#3A3548' }} tickLine={false} />
           <YAxis
             tickFormatter={(v) => fmtPct(v, 0)}
-            tick={{ fontSize: 10, fill: '#898781' }}
+            tick={{ fontSize: 10, fill: '#8F99B2' }}
             axisLine={false}
             tickLine={false}
           />
-          <ReferenceLine y={0} stroke="#c3c2b7" />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+          <ReferenceLine y={0} stroke="#3A3548" />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
           <Bar dataKey="margin" radius={[3, 3, 0, 0]} maxBarSize={26}>
             {data.map((d, i) => (
-              <Cell key={i} fill={d.date === '2024-07-20' ? '#C1443B' : '#B9C2D6'} />
+              <Cell key={i} fill={d.date === '2024-07-20' ? '#F2664F' : '#B7C4E5'} />
             ))}
           </Bar>
         </ComposedChart>

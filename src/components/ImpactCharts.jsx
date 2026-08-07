@@ -37,15 +37,15 @@ export function ShortfallRanking() {
       <div style={{ width: '100%', height: 280, marginTop: 16 }}>
         <ResponsiveContainer>
           <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 70, left: 8, bottom: 0 }}>
-            <CartesianGrid stroke="#e1e0d9" horizontal={false} />
-            <XAxis type="number" domain={[0, 'dataMax']} tickFormatter={(v) => fmtBRL(v)} tick={{ fontSize: 10, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} />
-            <YAxis type="category" dataKey="label" width={140} tick={{ fontSize: 11, fill: '#4B4F62' }} axisLine={false} tickLine={false} />
-            <Tooltip content={<ShortfallTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+            <CartesianGrid stroke="#2A2538" horizontal={false} />
+            <XAxis type="number" domain={[0, 'dataMax']} tickFormatter={(v) => fmtBRL(v)} tick={{ fontSize: 10, fill: '#8F99B2' }} axisLine={{ stroke: '#463F5C' }} tickLine={false} />
+            <YAxis type="category" dataKey="label" width={140} tick={{ fontSize: 11, fill: '#8F99B2' }} axisLine={false} tickLine={false} />
+            <Tooltip content={<ShortfallTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
             <Bar dataKey="shortfall" radius={[0, 3, 3, 0]} maxBarSize={22}>
               {rows.map((r, i) => (
-                <Cell key={i} fill={r.label === HIGHLIGHT ? '#C1443B' : '#D8D5C9'} />
+                <Cell key={i} fill={r.label === HIGHLIGHT ? '#F2664F' : '#463F5C'} />
               ))}
-              <LabelList dataKey="shortfall" position="right" formatter={(v) => fmtBRL(v)} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fill: '#63666B' }} />
+              <LabelList dataKey="shortfall" position="right" formatter={(v) => fmtBRL(v)} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fill: '#9C9CB0' }} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
@@ -63,15 +63,15 @@ export function SpendShare() {
       <div style={{ width: '100%', height: 260, marginTop: 16 }}>
         <ResponsiveContainer>
           <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 50, left: 8, bottom: 0 }}>
-            <CartesianGrid stroke="#e1e0d9" horizontal={false} />
-            <XAxis type="number" tickFormatter={(v) => fmtPct(v, 0)} tick={{ fontSize: 10, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} />
-            <YAxis type="category" dataKey="label" width={140} tick={{ fontSize: 11, fill: '#4B4F62' }} axisLine={false} tickLine={false} />
-            <Tooltip content={<ShareTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+            <CartesianGrid stroke="#2A2538" horizontal={false} />
+            <XAxis type="number" tickFormatter={(v) => fmtPct(v, 0)} tick={{ fontSize: 10, fill: '#8F99B2' }} axisLine={{ stroke: '#463F5C' }} tickLine={false} />
+            <YAxis type="category" dataKey="label" width={140} tick={{ fontSize: 11, fill: '#8F99B2' }} axisLine={false} tickLine={false} />
+            <Tooltip content={<ShareTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
             <Bar dataKey="share" radius={[0, 3, 3, 0]} maxBarSize={22}>
               {rows.map((r, i) => (
-                <Cell key={i} fill={r.label === HIGHLIGHT ? '#C1443B' : '#D8D5C9'} />
+                <Cell key={i} fill={r.label === HIGHLIGHT ? '#F2664F' : '#463F5C'} />
               ))}
-              <LabelList dataKey="share" position="right" formatter={(v) => fmtPct(v, 0)} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fill: '#63666B' }} />
+              <LabelList dataKey="share" position="right" formatter={(v) => fmtPct(v, 0)} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fill: '#9C9CB0' }} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

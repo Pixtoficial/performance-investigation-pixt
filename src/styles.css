@@ -1,19 +1,20 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #F5F3EE;
-  --surface: #FFFFFF;
-  --ink: #171C2E;
-  --ink-soft: #4B4F62;
-  --muted: #8A8D9B;
-  --border: #E3E0D6;
-  --alert: #C1443B;
-  --alert-soft: #F5E4E2;
-  --ok: #2F6F62;
-  --ok-soft: #E4EDE9;
-  --accent: #2C3E6B;
-  --accent-soft: #E8EAF1;
-  --font-display: 'Fraunces', Georgia, serif;
+  --bg: #08070D;
+  --surface: #120F19;
+  --surface-gradient: linear-gradient(327deg, #211D2E 0%, #0D0B11 65%);
+  --ink: #F5F4F8;
+  --ink-soft: #C7C7D4;
+  --muted: #8F99B2;
+  --border: #2A2538;
+  --alert: #F2664F;
+  --alert-soft: rgba(242, 102, 79, 0.14);
+  --ok: #3ECF97;
+  --ok-soft: rgba(62, 207, 151, 0.14);
+  --accent: #B7C4E5;
+  --accent-soft: rgba(183, 196, 229, 0.12);
+  --font-display: 'Be Vietnam Pro', 'Inter', sans-serif;
   --font-body: 'Inter', -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
@@ -35,7 +36,7 @@ nav.topnav {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(245, 243, 238, 0.92);
+  background: rgba(8, 7, 13, 0.85);
   backdrop-filter: blur(6px);
   border-bottom: 0.5px solid var(--border);
 }
@@ -66,7 +67,8 @@ nav.topnav a {
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
-nav.topnav a:hover { border-bottom-color: var(--ink-soft); }
+nav.topnav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
 
 section { padding: 64px 0; border-bottom: 0.5px solid var(--border); }
 section:last-of-type { border-bottom: none; }
@@ -84,16 +86,16 @@ section:last-of-type { border-bottom: none; }
 
 h1 {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 44px;
-  line-height: 1.15;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1.18;
   letter-spacing: -0.01em;
   max-width: 780px;
 }
 h2 {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 26px;
+  font-weight: 700;
+  font-size: 24px;
   margin-bottom: 8px;
 }
 h3 {
@@ -138,13 +140,13 @@ p.body-text + p.body-text { margin-top: 12px; }
 }
 .hf-num {
   font-family: var(--font-display);
-  font-size: 56px;
-  font-weight: 500;
+  font-size: 52px;
+  font-weight: 700;
   color: var(--ink);
   line-height: 1;
   font-variant-numeric: tabular-nums lining-nums;
 }
-.hf-num.alert { color: var(--alert); font-size: 72px; }
+.hf-num.alert { color: var(--alert); font-size: 68px; }
 .hf-caption {
   font-size: 13px;
   color: var(--ink-soft);
@@ -162,7 +164,7 @@ p.body-text + p.body-text { margin-top: 12px; }
   margin-top: 40px;
 }
 .kpi-card {
-  background: var(--surface);
+  background: var(--surface-gradient);
   border: 0.5px solid var(--border);
   border-radius: 12px;
   padding: 20px 18px;
@@ -191,7 +193,7 @@ p.body-text + p.body-text { margin-top: 12px; }
 }
 
 .card {
-  background: var(--surface);
+  background: var(--surface-gradient);
   border: 0.5px solid var(--border);
   border-radius: 12px;
   padding: 24px;

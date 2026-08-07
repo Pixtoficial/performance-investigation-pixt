@@ -36,13 +36,13 @@ export default function FunnelChart() {
       <div style={{ width: '100%', height: 280, marginTop: 16 }}>
         <ResponsiveContainer>
           <BarChart data={data} margin={{ top: 8, right: 8, left: -12, bottom: 20 }} barGap={6}>
-            <CartesianGrid stroke="#e1e0d9" vertical={false} />
-            <XAxis dataKey="stage" tick={{ fontSize: 11, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} interval={0} />
-            <YAxis tickFormatter={(v) => fmtPct(v, 0)} tick={{ fontSize: 10, fill: '#898781' }} axisLine={false} tickLine={false} />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+            <CartesianGrid stroke="#2A2538" vertical={false} />
+            <XAxis dataKey="stage" tick={{ fontSize: 11, fill: '#8F99B2' }} axisLine={{ stroke: '#3A3548' }} tickLine={false} interval={0} />
+            <YAxis tickFormatter={(v) => fmtPct(v, 0)} tick={{ fontSize: 10, fill: '#8F99B2' }} axisLine={false} tickLine={false} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
             <Legend wrapperStyle={{ fontSize: 12 }} formatter={(v) => (v === 'antes' ? 'Média até 19/07' : '20/07')} />
-            <Bar dataKey="antes" name="antes" fill="#B9C2D6" radius={[3, 3, 0, 0]} maxBarSize={56} />
-            <Bar dataKey="dia20" name="dia20" fill="#C1443B" radius={[3, 3, 0, 0]} maxBarSize={56} />
+            <Bar dataKey="antes" name="antes" fill="#B7C4E5" radius={[3, 3, 0, 0]} maxBarSize={56} />
+            <Bar dataKey="dia20" name="dia20" fill="#F2664F" radius={[3, 3, 0, 0]} maxBarSize={56} />
           </BarChart>
         </ResponsiveContainer>
       </div>
