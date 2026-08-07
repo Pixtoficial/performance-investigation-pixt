@@ -33,8 +33,9 @@ export default function App() {
           <h1>Em um único dia, a margem de lucro saiu de positiva para -5%. A história começa em uma única página que parou de converter.</h1>
           <p className="lede">
             A margem de lucro diária andava estável entre 1% e 4% ao longo de julho de 2024. No dia 20, ela virou -5%.
-            O gasto não mudou, os canais de mídia não mudaram. Algo quebrou no destino de um anúncio específico,
-            e o tamanho desse anúncio dentro do orçamento foi grande o suficiente para arrastar a conta inteira junto.
+            O gasto não mudou, os canais de mídia não mudaram. As campanhas seguiram levando tráfego normalmente.
+            Algo quebrou na página de destino de um curso específico, e o peso desse curso dentro do orçamento
+            foi grande o suficiente para arrastar a conta inteira junto.
           </p>
 
           <div className="hero-flow">
