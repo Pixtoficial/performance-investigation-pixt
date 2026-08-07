@@ -162,6 +162,8 @@ export function channelBreakdown(filters = DEFAULT_SEGMENT) {
 // shortfall de receita no dia 20, comparado ao que cada um produziria na sua
 // própria média histórica de ROAS. Canal é somado dentro do combo (é dimensão
 // redundante nesse dataset — não varia o resultado, só replica).
+// Usa a mesma convenção de shortfallAnalysis: ROAS médio = média das taxas diárias
+// (não receita-total/gasto-total), para o total bater exatamente com o KPI principal.
 export function shortfallContributors(topN = 6) {
   const groups = {}
   for (const r of detailed) {
@@ -176,11 +178,15 @@ export function shortfallContributors(topN = 6) {
     if (!g.day.length || !g.before.length) continue
     const gastoDay = g.day.reduce((s, r) => s + r.gasto, 0)
     const revenueDay = g.day.reduce((s, r) => s + r.revenue, 0)
-    const gastoBefore = g.before.reduce((s, r) => s + r.gasto, 0)
-    const revenueBefore = g.before.reduce((s, r) => s + r.revenue, 0)
-    const avgRoas = revenueBefore / gastoBefore
-    const expectedRevenue = gastoDay * avgRoas
-    const shortfall = expectedRevenue - revenueDay
+    // média das taxas diárias de ROAS por linha (canal × dia), não revenue/gasto agregado
+    const avgRoas = g.before.reduce((s, r) => s + r.roas, 0) / g.before.length
+    // gasto médio por canal no dia, multiplicado pelo nº de canais do combo,
+    // para manter a mesma base de cálculo por linha que shortfallAnalysis usa
+    const canaisNoCombo = new Set(g.day.map((r) => r.canal)).size
+    let shortfall = 0
+    for (const r of g.day) {
+      shortfall += r.gasto * avgRoas - r.revenue
+    }
     rows.push({ label, shortfall, gastoDay, roasBefore: avgRoas, roasDay: revenueDay / gastoDay })
   }
   rows.sort((a, b) => b.shortfall - a.shortfall)
