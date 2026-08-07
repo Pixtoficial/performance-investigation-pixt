@@ -34,11 +34,11 @@ export function ShortfallRanking() {
         Shortfall = receita esperada (pela média histórica de ROAS de cada combo) menos receita real do dia.
         Total do dia: {fmtBRL(total)}.
       </div>
-      <div style={{ width: '100%', height: 260, marginTop: 16 }}>
+      <div style={{ width: '100%', height: 280, marginTop: 16 }}>
         <ResponsiveContainer>
-          <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 40, left: 8, bottom: 0 }}>
+          <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 70, left: 8, bottom: 0 }}>
             <CartesianGrid stroke="#e1e0d9" horizontal={false} />
-            <XAxis type="number" tickFormatter={(v) => fmtBRL(v)} tick={{ fontSize: 10, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} />
+            <XAxis type="number" domain={[0, 'dataMax']} tickFormatter={(v) => fmtBRL(v)} tick={{ fontSize: 10, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} />
             <YAxis type="category" dataKey="label" width={140} tick={{ fontSize: 11, fill: '#4B4F62' }} axisLine={false} tickLine={false} />
             <Tooltip content={<ShortfallTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
             <Bar dataKey="shortfall" radius={[0, 3, 3, 0]} maxBarSize={22}>
