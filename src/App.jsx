@@ -3,13 +3,14 @@ import Explorer from './components/Explorer'
 import ChannelBreakdown from './components/ChannelBreakdown'
 import FunnelChart from './components/FunnelChart'
 import { ShortfallRanking, SpendShare } from './components/ImpactCharts'
-import { fmtPct, fmtBRL, totalsForDate, shareOfSpend, shortfallAnalysis, overallMarginStats, DEFAULT_SEGMENT, D20_DATE } from './lib/data'
+import { fmtPct, fmtBRL, totalsForDate, shareOfSpend, shortfallAnalysis, overallMarginStats, beforePeriodLabel, DEFAULT_SEGMENT, D20_DATE } from './lib/data'
 
 export default function App() {
   const margin = overallMarginStats()
   const d20 = totalsForDate(D20_DATE)
   const share = shareOfSpend(DEFAULT_SEGMENT)
   const shortfall = shortfallAnalysis(DEFAULT_SEGMENT)
+  const beforeLabel = beforePeriodLabel()
 
   return (
     <>
@@ -29,16 +30,25 @@ export default function App() {
       <div className="wrap">
         <section id="problema" style={{ paddingTop: 56 }}>
           <div className="eyebrow">Parte 1 · O problema · 20 de julho de 2024</div>
-          <h1>Em um único dia, a margem de lucro saiu de positiva para -5% — e a história começa em uma única página que parou de converter.</h1>
+          <h1>Em um único dia, a margem de lucro saiu de positiva para -5%. A história começa em uma única página que parou de converter.</h1>
           <p className="lede">
-            A margem diária andava estável entre 1% e 4% ao longo de julho de 2024. No dia 20, ela virou -5%.
-            O gasto não mudou, os canais de mídia não mudaram — algo quebrou no destino de um anúncio específico,
+            A margem de lucro diária andava estável entre 1% e 4% ao longo de julho de 2024. No dia 20, ela virou -5%.
+            O gasto não mudou, os canais de mídia não mudaram. Algo quebrou no destino de um anúncio específico,
             e o tamanho desse anúncio dentro do orçamento foi grande o suficiente para arrastar a conta inteira junto.
           </p>
 
-          <div className="hero-stat">
-            <span className="num">{fmtPct(margin.day20, 0)}</span>
-            <span className="cap">margem de lucro em 20/07, ante média de {fmtPct(margin.avgBefore, 0)} nos 19 dias anteriores</span>
+          <div className="hero-flow">
+            <div className="hf-block">
+              <div className="hf-dates">{beforeLabel}</div>
+              <div className="hf-num">{fmtPct(margin.avgBefore, 0)}</div>
+              <div className="hf-caption">média da margem de lucro</div>
+            </div>
+            <div className="hf-arrow">→</div>
+            <div className="hf-block">
+              <div className="hf-dates">20/07</div>
+              <div className="hf-num alert">{fmtPct(margin.day20, 0)}</div>
+              <div className="hf-caption">margem de lucro no dia</div>
+            </div>
           </div>
 
           <div className="kpi-grid">

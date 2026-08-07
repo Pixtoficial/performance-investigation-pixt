@@ -130,6 +130,16 @@ export function overallMarginStats() {
   return { avgBefore, day20: day.margin, delta: day.margin - avgBefore }
 }
 
+function fmtDayMonth(dateStr) {
+  return dateStr.slice(8, 10) + '/' + dateStr.slice(5, 7)
+}
+
+// "01/07 – 19/07" — o intervalo de dias usado para a média de comparação
+export function beforePeriodLabel() {
+  const before = overall.filter((d) => d.date !== D20).map((d) => d.date).sort()
+  return `${fmtDayMonth(before[0])} – ${fmtDayMonth(before[before.length - 1])}`
+}
+
 // ROAS por canal, dentro de um segmento (inst+estado+curso), média pré-período vs 20/07.
 // Serve para provar que a queda atinge os 3 canais igualmente (não é um problema de mídia).
 export function channelBreakdown(filters = DEFAULT_SEGMENT) {
