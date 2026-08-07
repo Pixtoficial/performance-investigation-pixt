@@ -6,7 +6,8 @@ function CustomTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null
   return (
     <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 8, padding: '8px 12px', fontFamily: 'var(--font-mono)', fontSize: 12 }}>
-      <div style={{ color: 'var(--muted)', marginBottom: 4 }}>{label}</div>
+      <div style={{ color: 'var(--ink)', fontWeight: 600, marginBottom: 2 }}>{label}</div>
+      <div style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>ROAS (receita ÷ gasto)</div>
       {payload.map((p) => (
         <div key={p.dataKey} style={{ color: p.color }}>{p.name}: {p.value.toFixed(2)}</div>
       ))}

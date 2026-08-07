@@ -6,7 +6,8 @@ function CustomTooltip({ active, payload, label }) {
   const v = payload[0].value
   return (
     <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 8, padding: '8px 12px', fontFamily: 'var(--font-mono)', fontSize: 12 }}>
-      <div style={{ color: 'var(--muted)', marginBottom: 4 }}>{label}</div>
+      <div style={{ color: 'var(--ink)', fontWeight: 600, marginBottom: 2 }}>{label}</div>
+      <div style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Margem de lucro</div>
       <div style={{ color: v < 0 ? 'var(--alert)' : 'var(--ink)' }}>{fmtPct(v)}</div>
     </div>
   )

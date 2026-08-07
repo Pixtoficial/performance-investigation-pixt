@@ -10,10 +10,12 @@ const STAGES = [
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null
   return (
-    <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 8, padding: '8px 12px', fontFamily: 'var(--font-mono)', fontSize: 12 }}>
-      <div style={{ color: 'var(--muted)', marginBottom: 4 }}>{label}</div>
+    <div style={{ background: 'var(--surface)', border: '0.5px solid var(--border)', borderRadius: 8, padding: '8px 12px', fontFamily: 'var(--font-mono)', fontSize: 12, minWidth: 170, whiteSpace: 'pre-line' }}>
+      <div style={{ color: 'var(--ink)', fontWeight: 600, marginBottom: 6 }}>{label}</div>
       {payload.map((p) => (
-        <div key={p.dataKey} style={{ color: p.color }}>{p.name}: {fmtPct(p.value)}</div>
+        <div key={p.dataKey} style={{ color: p.color }}>
+          {p.dataKey === 'antes' ? 'Média até 19/07' : '20/07'}: {fmtPct(p.value)}
+        </div>
       ))}
     </div>
   )
