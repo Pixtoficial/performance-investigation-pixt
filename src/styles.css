@@ -165,24 +165,29 @@ p.body-text + p.body-text { margin-top: 12px; }
   background: var(--surface);
   border: 0.5px solid var(--border);
   border-radius: 12px;
-  padding: 18px 18px;
+  padding: 20px 18px;
 }
 .kpi-card .label {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .kpi-card .value {
-  font-family: var(--font-mono);
-  font-size: 24px;
+  font-family: var(--font-display);
+  font-size: 34px;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 .kpi-card .value.alert { color: var(--alert); }
 .kpi-card .sub {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--muted);
-  margin-top: 6px;
+  margin-top: 8px;
+  line-height: 1.35;
 }
 
 .card {

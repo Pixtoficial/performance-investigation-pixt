@@ -53,22 +53,22 @@ export default function App() {
 
           <div className="kpi-grid">
             <div className="kpi-card">
-              <div className="label">Receita perdida no dia (vs. esperado)</div>
-              <div className="value alert">{fmtBRL(shortfall.totalShortfall)}</div>
-              <div className="sub">comparado à média histórica de ROAS por segmento</div>
+              <div className="label">Total de receita perdida · 20/07</div>
+              <div className="value alert">-{fmtBRL(shortfall.totalShortfall)}</div>
+              <div className="sub">vs. receita esperada pela média histórica</div>
             </div>
             <div className="kpi-card">
-              <div className="label">% do shortfall explicado por UFBRA/SP/ADM</div>
+              <div className="label">Fatia do prejuízo · 20/07</div>
               <div className="value alert">{fmtPct(shortfall.segSharePct, 0)}</div>
-              <div className="sub">um único cruzamento de dimensões</div>
+              <div className="sub">UFBRA · SP · ADM sobre o total perdido</div>
             </div>
             <div className="kpi-card">
-              <div className="label">Share do gasto do dia nesse segmento</div>
+              <div className="label">Fatia do investimento · 20/07</div>
               <div className="value">{fmtPct(share, 0)}</div>
-              <div className="sub">gasto seguiu normal — o problema não foi verba</div>
+              <div className="sub">UFBRA · SP · ADM sobre o total investido</div>
             </div>
             <div className="kpi-card">
-              <div className="label">Gasto e receita totais, 20/07</div>
+              <div className="label">Total investido · 20/07</div>
               <div className="value">{fmtBRL(d20.gasto)}</div>
               <div className="sub">receita: {fmtBRL(d20.revenue)} · ROAS {d20.roas.toFixed(2)}</div>
             </div>
