@@ -129,3 +129,65 @@ export function overallMarginStats() {
   const day = overall.find((d) => d.date === D20)
   return { avgBefore, day20: day.margin, delta: day.margin - avgBefore }
 }
+
+// ROAS por canal, dentro de um segmento (inst+estado+curso), média pré-período vs 20/07.
+// Serve para provar que a queda atinge os 3 canais igualmente (não é um problema de mídia).
+export function channelBreakdown(filters = DEFAULT_SEGMENT) {
+  const seg = detailed.filter(
+    (r) => (filters.inst === 'Todas' || r.inst === filters.inst) &&
+           (filters.estado === 'Todos' || r.estado === filters.estado) &&
+           (filters.curso === 'Todos' || r.curso === filters.curso)
+  )
+  const canais = [...new Set(seg.map((r) => r.canal))].sort()
+  return canais.map((canal) => {
+    const rows = seg.filter((r) => r.canal === canal)
+    const before = rows.filter((r) => r.date !== D20)
+    const day = rows.find((r) => r.date === D20)
+    const roasBefore = weightedAvg(before, 'roas')
+    return { canal, antes: roasBefore, dia20: day ? day.roas : null }
+  })
+}
+
+// Ranking dos combos (instituição × estado × curso) que mais contribuíram para o
+// shortfall de receita no dia 20, comparado ao que cada um produziria na sua
+// própria média histórica de ROAS. Canal é somado dentro do combo (é dimensão
+// redundante nesse dataset — não varia o resultado, só replica).
+export function shortfallContributors(topN = 6) {
+  const groups = {}
+  for (const r of detailed) {
+    const key = `${r.inst} · ${r.estado} · ${r.curso}`
+    if (!groups[key]) groups[key] = { before: [], day: [] }
+    if (r.date === D20) groups[key].day.push(r)
+    else groups[key].before.push(r)
+  }
+  const rows = []
+  for (const label in groups) {
+    const g = groups[label]
+    if (!g.day.length || !g.before.length) continue
+    const gastoDay = g.day.reduce((s, r) => s + r.gasto, 0)
+    const revenueDay = g.day.reduce((s, r) => s + r.revenue, 0)
+    const gastoBefore = g.before.reduce((s, r) => s + r.gasto, 0)
+    const revenueBefore = g.before.reduce((s, r) => s + r.revenue, 0)
+    const avgRoas = revenueBefore / gastoBefore
+    const expectedRevenue = gastoDay * avgRoas
+    const shortfall = expectedRevenue - revenueDay
+    rows.push({ label, shortfall, gastoDay, roasBefore: avgRoas, roasDay: revenueDay / gastoDay })
+  }
+  rows.sort((a, b) => b.shortfall - a.shortfall)
+  const total = rows.reduce((s, r) => s + r.shortfall, 0)
+  return { rows: rows.slice(0, topN), total }
+}
+
+// Participação de cada combo no gasto total do dia 20 — para o gráfico de concentração.
+export function spendShareByCombo(date = D20) {
+  const rows = detailed.filter((r) => r.date === date)
+  const total = rows.reduce((s, r) => s + r.gasto, 0)
+  const byCombo = {}
+  for (const r of rows) {
+    const key = `${r.inst} · ${r.estado} · ${r.curso}`
+    byCombo[key] = (byCombo[key] || 0) + r.gasto
+  }
+  return Object.entries(byCombo)
+    .map(([label, gasto]) => ({ label, gasto, share: gasto / total }))
+    .sort((a, b) => b.gasto - a.gasto)
+}

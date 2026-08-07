@@ -1,6 +1,8 @@
 import MarginTrend from './components/MarginTrend'
 import Explorer from './components/Explorer'
-import Funnel from './components/Funnel'
+import ChannelBreakdown from './components/ChannelBreakdown'
+import FunnelChart from './components/FunnelChart'
+import { ShortfallRanking, SpendShare } from './components/ImpactCharts'
 import { fmtPct, fmtBRL, totalsForDate, shareOfSpend, shortfallAnalysis, overallMarginStats, DEFAULT_SEGMENT, D20_DATE } from './lib/data'
 
 export default function App() {
@@ -15,9 +17,9 @@ export default function App() {
         <div className="inner">
           <span className="brand">Investigação de performance · Aquisição</span>
           <div className="links">
-            <a href="#visao-geral">Visão geral</a>
-            <a href="#explorar">Explorar</a>
-            <a href="#funil">Funil</a>
+            <a href="#problema">O problema</a>
+            <a href="#evidencias">Evidências</a>
+            <a href="#conclusao">Conclusão</a>
             <a href="#causa-raiz">Causa raiz</a>
             <a href="#recomendacoes">Recomendações</a>
           </div>
@@ -25,18 +27,18 @@ export default function App() {
       </nav>
 
       <div className="wrap">
-        <section id="visao-geral" style={{ paddingTop: 56 }}>
-          <div className="eyebrow">20 de julho de 2024</div>
-          <h1>A margem da equipe de Aquisição virou negativa em um único dia — e a causa está isolada em 41% do orçamento.</h1>
+        <section id="problema" style={{ paddingTop: 56 }}>
+          <div className="eyebrow">Parte 1 · O problema · 20 de julho de 2024</div>
+          <h1>Em um único dia, a margem de lucro saiu de positiva para -5% — e a história começa em uma única página que parou de converter.</h1>
           <p className="lede">
-            A margem diária andava estável entre 1% e 4% ao longo de julho. Em 20/07 ela caiu para -5%.
-            A queda não veio da conta inteira: veio de um único cruzamento de instituição, estado e curso
-            que, sozinho, respondia por quase metade do gasto do dia.
+            A margem diária andava estável entre 1% e 4% ao longo de julho de 2024. No dia 20, ela virou -5%.
+            O gasto não mudou, os canais de mídia não mudaram — algo quebrou no destino de um anúncio específico,
+            e o tamanho desse anúncio dentro do orçamento foi grande o suficiente para arrastar a conta inteira junto.
           </p>
 
           <div className="hero-stat">
             <span className="num">{fmtPct(margin.day20, 0)}</span>
-            <span className="cap">margem em 20/07, ante média de {fmtPct(margin.avgBefore, 0)} nos 19 dias anteriores</span>
+            <span className="cap">margem de lucro em 20/07, ante média de {fmtPct(margin.avgBefore, 0)} nos 19 dias anteriores</span>
           </div>
 
           <div className="kpi-grid">
@@ -61,47 +63,88 @@ export default function App() {
               <div className="sub">receita: {fmtBRL(d20.revenue)} · ROAS {d20.roas.toFixed(2)}</div>
             </div>
           </div>
-        </section>
 
-        <section>
-          <div className="eyebrow neutral">Margem diária</div>
-          <h2>Um mês estável, uma quebra isolada</h2>
-          <p className="body-text">
-            O gráfico abaixo mostra a margem diária da equipe de Aquisição durante julho. A barra vermelha
-            marca 20/07 — o único dia fora do padrão observado no restante do mês.
-          </p>
-          <div className="card" style={{ marginTop: 20 }}>
-            <MarginTrend />
+          <div className="card" style={{ marginTop: 32 }}>
+            <div className="chart-title">Margem de lucro diária — julho de 2024</div>
+            <div className="chart-subtitle">Barra vermelha = 20/07, o único dia fora do padrão observado no resto do mês.</div>
+            <div style={{ marginTop: 16 }}>
+              <MarginTrend />
+            </div>
           </div>
         </section>
 
-        <section id="explorar">
-          <div className="eyebrow neutral">Investigação</div>
-          <h2>Onde exatamente a performance quebrou</h2>
+        <section id="evidencias">
+          <div className="eyebrow neutral">Parte 2 · As evidências</div>
+          <h2>O que os dados mostram, passo a passo</h2>
           <p className="body-text">
             Cruzando instituição, estado, canal e curso, a queda de ROAS em 20/07 aparece concentrada em
-            um único combo: <strong>UFBRA · SP · ADM</strong>. Ele afeta os três canais de tráfego
-            (Tiktok, Meta e Google Search) igualmente — sinal de que a causa está no destino do anúncio
-            (landing page), não na mídia. Use os filtros para conferir outros cruzamentos: nenhum outro
-            mostra o mesmo padrão de queda no dia 20.
+            um único combo: <strong>UFBRA · SP · ADM</strong>. Todos os outros cursos (Inglês, Excel,
+            Liderança), o outro estado da mesma instituição (MG) e a outra instituição (UNIASP) mantiveram
+            performance normal no dia. Três evidências mostram onde e como isso aconteceu.
           </p>
-          <Explorer />
+
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.1 — Não é a mídia: os três canais caem juntos, na mesma magnitude</h3>
+          <p className="body-text">
+            Se o problema fosse de uma plataforma de anúncio específica (leilão, conta bloqueada, mudança
+            de algoritmo), o impacto seria diferente em cada canal. Aqui, Tiktok, Meta e Google Search caem
+            de forma praticamente idêntica — sinal de que a causa está do lado do destino (a landing page),
+            não do lado da mídia.
+          </p>
+          <ChannelBreakdown />
+
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.2 — A quebra é no Add to Cart, não no checkout</h3>
+          <p className="body-text">
+            O gasto seguiu normal (R$14.227, dentro da média). O Add to Cart caiu praticamente pela metade
+            (18% → 9%). O Checkout CVR — a etapa seguinte, de pagamento — ficou estável (33% → 33%). Quem
+            chegava ao checkout continuava comprando; o vazamento acontece entre o clique no anúncio e a
+            adição do curso ao carrinho. Isso aponta para algo na própria página — bug, lentidão, erro de
+            carregamento, mudança de conteúdo ou preço, CTA quebrado — e não para o pagamento.
+          </p>
+          <FunnelChart />
+
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.3 — Por que isso derrubou a conta inteira</h3>
+          <p className="body-text">
+            UFBRA · SP · ADM sozinho representa {fmtPct(share, 0)} do gasto do dia — quase metade do
+            orçamento diário. Com essa concentração, uma falha pontual em uma única página foi suficiente
+            para explicar {fmtPct(shortfall.segSharePct, 0)} de toda a receita perdida no dia, e derrubar
+            a margem da conta inteira de positiva para -5%.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <ShortfallRanking />
+            <SpendShare />
+          </div>
         </section>
 
-        <section id="funil">
-          <div className="eyebrow neutral">Funil</div>
-          <h2>A quebra é no topo do funil, não no checkout</h2>
+        <section id="conclusao">
+          <div className="eyebrow ok">Parte 3 · Conclusão</div>
+          <h2>A história completa</h2>
           <p className="body-text">
-            Comparando as etapas do funil do segmento afetado antes e durante o dia 20: o Add to cart caiu
-            quase pela metade, enquanto o Checkout CVR — a etapa de pagamento — permaneceu normal. Quem
-            chegava ao checkout continuava comprando. O vazamento está entre o clique no anúncio e a
-            adição ao carrinho.
+            A queda da margem de lucro em 20/07 não veio de um problema de mídia, de leilão ou de uma
+            instabilidade geral da conta. Ela se deu devido a uma instituição específica (UFBRA), em um
+            estado específico (SP), em um curso específico (ADM) — muito provavelmente por causa de um
+            problema técnico ou de conteúdo na própria landing page desse produto, não nas campanhas em si.
           </p>
-          <Funnel />
+          <p className="body-text">
+            Isso porque os três canais de tráfego se mantiveram estáveis entre si, caindo igualmente, sem
+            que houvesse um declínio isolado em um canal específico — o que descarta causa de mídia. E
+            porque a quebra aconteceu na taxa de Add to Cart, que caiu drasticamente, enquanto o Checkout
+            CVR seguiu normal — sinalizando um problema no topo do funil, na própria página do produto, e
+            não no processo de pagamento.
+          </p>
+          <p className="body-text">
+            O motivo de essa falha pontual ter derrubado a margem da conta inteira é concentração de
+            budget: esse único combo responde por quase metade do gasto diário, então uma quebra nele tem
+            o mesmo peso que uma quebra na conta toda.
+          </p>
+          <p className="body-text">
+            Investigação da causa raiz do curso Excel (queda menor, dentro do que pode ser ruído normal)
+            fica como próximo passo, mas não muda a conclusão principal: o evento de 20/07 é explicado por
+            UFBRA · SP · ADM.
+          </p>
         </section>
 
         <section id="causa-raiz">
-          <div className="eyebrow">Causa raiz</div>
+          <div className="eyebrow">Parte 4 · Causa raiz e recomendações</div>
           <h2>Hipóteses</h2>
           <p className="body-text">
             Nenhuma destas foi confirmada em sistema — são as explicações mais prováveis dado o padrão
@@ -154,6 +197,16 @@ export default function App() {
               <p>Um único cruzamento institution × estado × curso concentrando ~41% do budget diário é um risco por si só. Definir caps de concentração por segmento e alertas automáticos de queda de Add to Cart acima de um limiar, antes que o gasto continue fluindo sem controle.</p>
             </div>
           </div>
+        </section>
+
+        <section id="explorar" style={{ borderBottom: 'none' }}>
+          <div className="eyebrow neutral">Apêndice</div>
+          <h2>Explore os dados você mesmo</h2>
+          <p className="body-text">
+            Ferramenta de conferência: troque instituição, estado, canal e curso e compare o ROAS diário da
+            seleção contra o da conta toda. Nenhum outro cruzamento mostra o mesmo padrão de queda em 20/07.
+          </p>
+          <Explorer />
         </section>
 
         <footer>
