@@ -59,7 +59,7 @@ export function SpendShare() {
   return (
     <div className="card">
       <div className="chart-title">Participação de cada combo no gasto de 20/07</div>
-      <div className="chart-subtitle">UFBRA · SP · ADM concentra quase metade do orçamento do dia — por isso uma falha pontual nele derruba a conta inteira.</div>
+      <div className="chart-subtitle">UFBRA · SP · ADM concentra quase metade do orçamento do dia. Por isso, uma falha pontual nele derruba a conta inteira.</div>
       <div style={{ width: '100%', height: 260, marginTop: 16 }}>
         <ResponsiveContainer>
           <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 50, left: 8, bottom: 0 }}>

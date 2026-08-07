@@ -20,7 +20,7 @@ export default function ChannelBreakdown() {
   const data = channelBreakdown(DEFAULT_SEGMENT)
   return (
     <div className="card">
-      <div className="chart-title">ROAS por canal — UFBRA · SP · ADM</div>
+      <div className="chart-title">ROAS por canal · UFBRA · SP · ADM</div>
       <div className="chart-subtitle">Média até 19/07 vs. 20/07, um canal ao lado do outro. Barras praticamente idênticas nos três canais.</div>
       <div style={{ width: '100%', height: 260, marginTop: 16 }}>
         <ResponsiveContainer>

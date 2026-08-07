@@ -31,7 +31,7 @@ export default function FunnelChart() {
 
   return (
     <div className="card">
-      <div className="chart-title">Taxas de conversão por etapa — UFBRA · SP · ADM</div>
+      <div className="chart-title">Taxas de conversão por etapa · UFBRA · SP · ADM</div>
       <div className="chart-subtitle">Add to Cart despenca; Checkout CVR (a etapa seguinte, de pagamento) fica praticamente igual.</div>
       <div style={{ width: '100%', height: 280, marginTop: 16 }}>
         <ResponsiveContainer>

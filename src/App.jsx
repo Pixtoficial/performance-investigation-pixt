@@ -76,7 +76,7 @@ export default function App() {
           </div>
 
           <div className="card" style={{ marginTop: 32 }}>
-            <div className="chart-title">Margem de lucro diária — julho de 2024</div>
+            <div className="chart-title">Margem de lucro diária · julho de 2024</div>
             <div className="chart-subtitle">Barra vermelha = 20/07, o único dia fora do padrão observado no resto do mês.</div>
             <div style={{ marginTop: 16 }}>
               <MarginTrend />
@@ -94,28 +94,28 @@ export default function App() {
             performance normal no dia. Três evidências mostram onde e como isso aconteceu.
           </p>
 
-          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.1 — Não é a mídia: os três canais caem juntos, na mesma magnitude</h3>
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.1 · Não é a mídia: os três canais caem juntos, na mesma magnitude</h3>
           <p className="body-text">
             Se o problema fosse de uma plataforma de anúncio específica (leilão, conta bloqueada, mudança
             de algoritmo), o impacto seria diferente em cada canal. Aqui, Tiktok, Meta e Google Search caem
-            de forma praticamente idêntica — sinal de que a causa está do lado do destino (a landing page),
+            de forma praticamente idêntica, sinal de que a causa está do lado do destino (a landing page),
             não do lado da mídia.
           </p>
           <ChannelBreakdown />
 
-          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.2 — A maior variação está no Add to Cart</h3>
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.2 · A maior variação está no Add to Cart</h3>
           <p className="body-text">
             O gasto seguiu normal (R$14.227, dentro da média). O Add to Cart caiu praticamente pela metade
-            (18% → 9%). O Checkout CVR — a etapa seguinte, de pagamento — ficou estável (33% → 33%). Quem
+            (18% → 9%). O Checkout CVR, a etapa seguinte de pagamento, ficou estável (33% → 33%). Quem
             chegava ao checkout continuava comprando; o vazamento acontece entre o clique no anúncio e a
-            adição do curso ao carrinho. Isso aponta para algo na própria página — bug, lentidão, erro de
-            carregamento, mudança de conteúdo ou preço, CTA quebrado — e não para o pagamento.
+            adição do curso ao carrinho. Isso aponta para algo na própria página: bug, lentidão, erro de
+            carregamento, mudança de conteúdo ou preço, CTA quebrado. Não aponta para o pagamento.
           </p>
           <FunnelChart />
 
-          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.3 — Por que isso derrubou a conta inteira</h3>
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.3 · Por que isso derrubou a conta inteira</h3>
           <p className="body-text">
-            UFBRA · SP · ADM sozinho representa {fmtPct(share, 0)} do gasto do dia — quase metade do
+            UFBRA · SP · ADM sozinho representa {fmtPct(share, 0)} do gasto do dia, quase metade do
             orçamento diário. Com essa concentração, uma falha pontual em uma única página foi suficiente
             para explicar {fmtPct(shortfall.segSharePct, 0)} de toda a receita perdida no dia, e derrubar
             a margem da conta inteira de positiva para -5%.
@@ -132,14 +132,14 @@ export default function App() {
           <p className="body-text">
             A queda da margem de lucro em 20/07 não veio de um problema de mídia, de leilão ou de uma
             instabilidade geral da conta. Ela se deu devido a uma instituição específica (UFBRA), em um
-            estado específico (SP), em um curso específico (ADM) — muito provavelmente por causa de um
+            estado específico (SP), em um curso específico (ADM), muito provavelmente por causa de um
             problema técnico ou de conteúdo na própria landing page desse produto, não nas campanhas em si.
           </p>
           <p className="body-text">
             Isso porque os três canais de tráfego se mantiveram estáveis entre si, caindo igualmente, sem
-            que houvesse um declínio isolado em um canal específico — o que descarta causa de mídia. E
+            que houvesse um declínio isolado em um canal específico. Isso descarta causa de mídia. E
             porque a quebra aconteceu na taxa de Add to Cart, que caiu drasticamente, enquanto o Checkout
-            CVR seguiu normal — sinalizando um problema no topo do funil, na própria página do produto, e
+            CVR seguiu normal, sinalizando um problema no topo do funil, na própria página do produto, e
             não no processo de pagamento.
           </p>
           <p className="body-text">
@@ -158,7 +158,7 @@ export default function App() {
           <div className="eyebrow">Parte 4 · Causa raiz e recomendações</div>
           <h2>Hipóteses</h2>
           <p className="body-text">
-            Nenhuma destas foi confirmada em sistema — são as explicações mais prováveis dado o padrão
+            Nenhuma destas foi confirmada em sistema. São as explicações mais prováveis dado o padrão
             observado, em ordem de probabilidade.
           </p>
           <div className="hyp-list">
@@ -166,7 +166,7 @@ export default function App() {
               <h3>Falha técnica na landing page do curso ADM (SP)</h3>
               <p>
                 Bug de carregamento, formulário quebrado, imagem ou preço não renderizando. Explica por
-                que o impacto é idêntico nos três canais — todos apontam para a mesma página — e por que
+                que o impacto é idêntico nos três canais, todos apontam para a mesma página, e por que
                 o checkout, que já não depende mais da LP, seguiu normal.
               </p>
             </div>
@@ -197,7 +197,7 @@ export default function App() {
             </div>
             <div className="rec-item">
               <span className="tag">Imediato</span>
-              <p>Validar ao vivo o disparo do evento de Add to Cart nessa página — descartar (ou confirmar) que parte da queda é tracking, não apenas comportamento real de usuário.</p>
+              <p>Validar ao vivo o disparo do evento de Add to Cart nessa página, para descartar (ou confirmar) que parte da queda é tracking e não apenas comportamento real de usuário.</p>
             </div>
             <div className="rec-item">
               <span className="tag">Curto prazo</span>
