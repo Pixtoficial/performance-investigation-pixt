@@ -103,7 +103,7 @@ export default function App() {
           </p>
           <ChannelBreakdown />
 
-          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.2 — A quebra é no Add to Cart, não no checkout</h3>
+          <h3 style={{ marginTop: 32, marginBottom: 4 }}>2.2 — A maior variação está no Add to Cart</h3>
           <p className="body-text">
             O gasto seguiu normal (R$14.227, dentro da média). O Add to Cart caiu praticamente pela metade
             (18% → 9%). O Checkout CVR — a etapa seguinte, de pagamento — ficou estável (33% → 33%). Quem
