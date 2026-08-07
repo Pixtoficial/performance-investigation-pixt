@@ -88,7 +88,7 @@ export default function App() {
           <div className="eyebrow neutral">Parte 2 · As evidências</div>
           <h2>O que os dados mostram, passo a passo</h2>
           <p className="body-text">
-            Cruzando instituição, estado, canal e curso, a queda de ROAS em 20/07 aparece concentrada em
+            Cruzando os dados, instituição, estado, canal e curso, a queda de ROAS em 20/07 aparece concentrada em
             um único combo: <strong>UFBRA · SP · ADM</strong>. Todos os outros cursos (Inglês, Excel,
             Liderança), o outro estado da mesma instituição (MG) e a outra instituição (UNIASP) mantiveram
             performance normal no dia. Três evidências mostram onde e como isso aconteceu.
