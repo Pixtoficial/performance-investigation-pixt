@@ -53,7 +53,7 @@ export default function App() {
 
           <div className="kpi-grid">
             <div className="kpi-card">
-              <div className="label">Total de receita perdida · 20/07</div>
+              <div className="label">Receita perdida · 20/07</div>
               <div className="value alert">-{fmtBRL(shortfall.totalShortfall)}</div>
               <div className="sub">vs. receita esperada pela média histórica</div>
             </div>
